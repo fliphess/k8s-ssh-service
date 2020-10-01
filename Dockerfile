@@ -13,7 +13,7 @@ RUN apt-get update \
     dnsutils \
     iputils-ping \
     jq \
-    keychain \
+    libnss-extrausers \
     openssh-server \
     procps \
     psmisc \
@@ -29,17 +29,14 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/* \
  && apt-get clean
 
-RUN mkdir -p /var/run/sshd /etc/ssh/authorized_keys \
- && chmod 0751 /etc/ssh/authorized_keys \
+RUN mkdir -p /var/run/sshd \
  && touch /var/log/wtmp \
  && chmod 0664 /var/log/wtmp \
  && rm /etc/ssh/ssh_host* \
  && ssh-keygen -A
 
-COPY config/sshd_config /etc/ssh/sshd_config
-COPY config/user-config.json /usr/local/etc
-COPY config/user-config.py /usr/local/bin
-RUN python /usr/local/bin/user-config.py /usr/local/etc/user-config.json
+COPY config/nsswitch.conf /etc
+COPY config/ssh-key-command /usr/local/bin
 
 WORKDIR /home
 CMD    ["/usr/sbin/sshd", "-De"]
