@@ -1,0 +1,41 @@
+#!/usr/bin/env python3
+import json
+import os
+import sys
+
+if len(sys.argv) != 2:
+    exit("Usage: {} <username>".format(sys.argv[0]))
+
+username = sys.argv[1]
+config_file = '/usr/local/etc/user-config.json'
+
+if not os.path.isfile(config_file):
+    exit(f"ERROR: Config file \"{CONFIG_FILE}\" not found!")
+
+try:
+    with open(CONFIG_FILE) as fh:
+        user_data = json.loads(fh.read())
+except Exception:
+    exit(f"ERROR: Config file \"{CONFIG_FILE}\" cannot be read!")
+
+
+if username not in user_data:
+    exit("ERROR: User not found!")
+
+
+# {
+#   "username": "flip",
+#    "fullname": "Flip Hess",
+#    "shell": "/bin/bash",
+#    "ssh_keys": [
+#      {
+#        "comment": "flip@zaaksysteem.nl",
+#        "key": "AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBJ0aRXmlCO+dBCfmakY9KXMUk5s2zQdlQ5d7vILlG4mhe4R8+hokIIa+m0KG9D1epG2TeWu8343pONl58NZXBCM=",
+#        "type": "ecdsa-sha2-nistp256"
+#      }
+#    ]
+#  }
+
+ssh_keys = user_data.get(username, {}).get('ssh_keys', [])
+
+print('\n'.join([f"{key['type']} {key['key']} ## {key['comment']}\n" for key in ssh_keys]))
