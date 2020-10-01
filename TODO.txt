@@ -1,0 +1,2 @@
+1. Retrieve host keys from secret if exists, else generate
+2. Generate ssh host keys and save in secret
