@@ -57,7 +57,7 @@ COPY config/create-home /usr/local/bin
 COPY config/users /etc
 
 ## Configure pam to run a script on SSH login
-RUN 'echo session optional pam_exec.so seteuid /usr/local/bin/create-home' >> /etc/pam.d/sshd
+RUN bash -c 'echo "session optional pam_exec.so seteuid /usr/local/bin/create-home" >> /etc/pam.d/sshd'
 
 ## Set permissions on the scripts that ssh executes
 RUN chmod 0755 /usr/local/bin/ssh-key-command /usr/local/bin/create-home \
