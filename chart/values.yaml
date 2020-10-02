@@ -60,8 +60,6 @@ readinessProbe:
   initialDelaySeconds: 30
   timeoutSeconds: 15
 
-homeDir: "/tmp"
-
 sshdConfig:
   Port: 22
   SyslogFacility: AUTH

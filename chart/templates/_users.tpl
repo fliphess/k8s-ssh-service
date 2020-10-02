@@ -4,7 +4,7 @@
 
 {{- define "ssh-service.passwd" -}}
 {{- range $key, $value := $.Values.userConfig -}}
-{{ printf "%s:x:%s:65534:,,,:%s:%s\n" $key ($value.uid | toString) (default "/tmp" $.Values.homeDir) (default "/bin/bash" $value.shell) }}
+{{ printf "%s:x:%s:65534:,,,:/home/%s:%s\n" $key ($value.uid | toString) $key (default "/bin/bash" $value.shell) }}
 {{- end -}}
 {{- end -}}
 

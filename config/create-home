@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+HOMEDIR="/home/${PAM_USER}"
+
+if [ ! -d "$HOMEDIR" ] ; then
+    mkdir -p "$HOMEDIR"
+
+    if [ -d "/etc/users/${PAM_USER}" ] ; then
+        cp -r "/etc/users/${PAM_USER}" "$HOMEDIR"
+    else
+        cp -r "/etc/users/default" "$HOMEDIR"
+    fi
+fi
+
+echo "Homedir for ${PAM_USER} created as ${HOMEDIR}"
