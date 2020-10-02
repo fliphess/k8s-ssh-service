@@ -18,9 +18,19 @@ RUN apt-get update \
     jq \
     libnss-extrausers \
     locales \
+    moreutils \
+    net-tools \
+    netcat \
+    nmap \
     openssh-server \
+    pg-activity \
+    pgbadger \
+    pgtop \
+    postgresql-client-common \
+    postgresql-client \
     procps \
     psmisc \
+    pspg \
     readline-common \
     rsync \
     screen \
@@ -28,6 +38,7 @@ RUN apt-get update \
     telnet \
     time \
     traceroute \
+    vim \
     wget \
     zip \
     zsh \
@@ -55,6 +66,7 @@ COPY config/nsswitch.conf /etc
 COPY config/ssh-key-command /usr/local/bin
 COPY config/create-home /usr/local/bin
 COPY config/users /etc/users
+COPY config/motd /etc/motd
 
 ## Configure pam to run a script on SSH login
 RUN bash -c 'echo "session optional pam_exec.so seteuid /usr/local/bin/create-home" >> /etc/pam.d/sshd'
