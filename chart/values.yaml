@@ -7,7 +7,6 @@ image:
   tag: master
   pullPolicy: Always
 
-
 imagePullSecrets: []
 
 nameOverride: ""
@@ -91,24 +90,12 @@ sshdConfig:
   AuthorizedKeysCommandUser: nobody
 
 userConfig:
-  patrick:
-    uid: 1000
-    shell: /bin/bash
-    ssh_keys:
-    - comment: "tyil@bast.tyil.net"
-      key: "AAAAB3NzaC1yc2EAAAADAQABAAABAQDIirYqfC+oG4L+diS1mVX/nnu9DsOb8kpfepUVNpHhHG3s+nG9GYObxNIEuU0tgLu2GjPk+Ynfv5Jg569whtk92gmunEufC0GT3fSuu0jDvh9zIJOdhvJRnFtOKs1Y/SD1sRpBuUhs/xBhz9k8eX4bnaDeNhq+/aaQfSVh+q9XlbUvFccYvFI7rq/0grQK98sijPQh3qFt4qgkPiqGofBrgRTIYqUow1ujRy1NN98HwTyo/74bLI1kZDv8V+p5RknewTkh2xINpu9kgFmulp9G9FLTlJE7LftJX6RiE6j7Ck3+oEgdSi8VGdyidBlu2HpyISSHz0DWJBHEb11/oCoh"
-      type: ssh-rsa
-
-    - comment: "tyil@anoia.tyil.net"
-      key: "AAAAB3NzaC1yc2EAAAADAQABAAABAQC3u9A48lupHLEvf1WxMZrA2htnibBqFqT6Fq1paBtuIkcI4TcasS7hzmO5WtN7R+DmwbtTn+qQkspBIop5B4QkeYYLrvYAMMfTBDeXRWEfnTe61s0B/wT2v9v3vZ+58IWOT+kut36qRubOiPpNCRmqMtnVrPUQjwseir5fQ3uPACyvE+TIa3q3UqD80KdSeIYh0sYdbI+8iOqD+Gc6vmNfa7dD/Q09X7aet/aYaeYSUpKzZbx6WwvFKC3oeTNoq+UElOtGVGbfvSWRZteeHPCBRITHelByuF/ilN9us5+3zh4TkC01g2JOePVZu9KrA+1YPN+0XEwaLKMfmhLDpirj"
-      type: ssh-rsa
-
-  flip:
+  admin:
     uid: 1001
     shell: /bin/bash
     ssh_keys:
-    - comment: "flip@zaaksysteem.nl"
-      key: "AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBJ0aRXmlCO+dBCfmakY9KXMUk5s2zQdlQ5d7vILlG4mhe4R8+hokIIa+m0KG9D1epG2TeWu8343pONl58NZXBCM="
+    - comment: "key@example.com"
+      key: "SOMEKEY"
       type: ecdsa-sha2-nistp256
 
 sshHostKeys: []
