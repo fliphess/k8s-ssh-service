@@ -26,6 +26,7 @@ if username not in user_data:
 # {
 #   "flip" {
 #      "shell": "/bin/bash",
+#      "uid": 1000,
 #      "ssh_keys": [
 #        {
 #          "comment": "flip@zaaksysteem.nl",

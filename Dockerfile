@@ -1,5 +1,9 @@
-FROM python:3.8-slim-buster
+FROM debian:buster
 MAINTAINER Mintlab Devops <ops@mintlab.nl>
+
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
 
 EXPOSE 22
 
@@ -14,9 +18,11 @@ RUN apt-get update \
     iputils-ping \
     jq \
     libnss-extrausers \
+    locales \
     openssh-server \
     procps \
     psmisc \
+    readline-common \
     rsync \
     screen \
     ssh \
@@ -29,6 +35,10 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/* \
  && apt-get clean
 
+RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
+ && dpkg-reconfigure --frontend=noninteractive locales \
+ && update-locale LANG=en_US.UTF-8
+
 RUN mkdir -p /var/run/sshd \
  && touch /var/log/wtmp \
  && chmod 0664 /var/log/wtmp \
@@ -37,6 +47,9 @@ RUN mkdir -p /var/run/sshd \
 
 COPY config/nsswitch.conf /etc
 COPY config/ssh-key-command /usr/local/bin
+
+RUN chmod 0755 /usr/local/bin/ssh-key-command \
+ && chown root:root /usr/local/bin/ssh-key-command
 
 WORKDIR /home
 CMD    ["/usr/sbin/sshd", "-De"]
