@@ -17,4 +17,19 @@
 # alias cp='cp -i'
 # alias mv='mv -i'
 
-PS1='\[\033[01;34m\]\D{%d-%m-%Y} \t \[\033]0; \h:\w\007\]\[\033[01;32m\]\u@\h \[\033[01;34m\]\w\[\033[01;31m\]$(__git_ps1)\[\033[01;32m\] \$ \[\033[00m\]'
+export PS1='\[\033[01;34m\]\D{%d-%m-%Y} \t \[\033]0;\D{%d-%m-%Y} \h:\w\007\]\[\033[01;32m\]\u@\h \[\033[01;34m\]\w\[\033[01;31m\]\[\033[01;32m\] \$ \[\033[00m\]'
+
+# complete things that have been typed in the wrong case
+set completion-ignore-case on
+
+# notify when jobs running in background terminate
+set -o notify
+
+# no empty completion (bash>=2.04 only)
+shopt -s no_empty_cmd_completion
+
+# (core file size) don't want any coredumps
+ulimit -S -c 0
+
+# set umask
+umask 022
