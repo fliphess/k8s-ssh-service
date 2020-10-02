@@ -65,7 +65,7 @@ homeDir: "/tmp"
 sshdConfig:
   Port: 22
   SyslogFacility: AUTH
-  LogLevel: DEBUG
+  LogLevel: VERBOSE
   LoginGraceTime: 2m
   PermitRootLogin: "no"
   StrictModes: "yes"
