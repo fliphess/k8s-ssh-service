@@ -54,7 +54,7 @@ RUN mkdir -p /var/run/sshd \
 COPY config/nsswitch.conf /etc
 COPY config/ssh-key-command /usr/local/bin
 COPY config/create-home /usr/local/bin
-COPY config/users /etc
+COPY config/users /etc/users
 
 ## Configure pam to run a script on SSH login
 RUN bash -c 'echo "session optional pam_exec.so seteuid /usr/local/bin/create-home" >> /etc/pam.d/sshd'

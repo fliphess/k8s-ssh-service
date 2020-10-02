@@ -5,9 +5,9 @@ if [ ! -d "$HOMEDIR" ] ; then
     mkdir -p "$HOMEDIR"
 
     if [ -d "/etc/users/${PAM_USER}" ] ; then
-        cp -r "/etc/users/${PAM_USER}" "$HOMEDIR"
+	find "/etc/users/${PAM_USER}" -type f -exec cp {} "$HOMEDIR" \;
     else
-        cp -r "/etc/users/default" "$HOMEDIR"
+	find "/etc/users/default" -type f -exec cp {} "$HOMEDIR" \;
     fi
 fi
 
