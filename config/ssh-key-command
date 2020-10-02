@@ -10,13 +10,13 @@ username = sys.argv[1]
 config_file = '/usr/local/etc/user-config.json'
 
 if not os.path.isfile(config_file):
-    exit(f"ERROR: Config file \"{CONFIG_FILE}\" not found!")
+    exit(f"ERROR: Config file \"{config_file}\" not found!")
 
 try:
-    with open(CONFIG_FILE) as fh:
+    with open(config_file) as fh:
         user_data = json.loads(fh.read())
 except Exception:
-    exit(f"ERROR: Config file \"{CONFIG_FILE}\" cannot be read!")
+    exit(f"ERROR: Config file \"{config_file}\" cannot be read!")
 
 
 if username not in user_data:

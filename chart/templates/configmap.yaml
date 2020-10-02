@@ -10,5 +10,5 @@ data:
   sshd_config: >
   {{ include "ssh-service.sshd_config" . | nindent 4 }}
   user_config: >
-  {{ toPrettyJson .Values.userConfig | nindent 4 }}"
+  {{ toPrettyJson .Values.userConfig | nindent 4 }}
 {{- end }}

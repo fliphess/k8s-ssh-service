@@ -5,7 +5,7 @@
 {{- define "ssh-service.sshd_config" -}}
 {{- range $key, $value := .Values.sshdConfig }}
 {{ $key }} {{ $value }}
-{{- end }}
+{{ end -}}
 {{- end -}}
 
 

@@ -39,11 +39,15 @@ spec:
         configMap:
           defaultMode: 0644
           name: {{ include "ssh-service.fullname" . }}
-      - name: shadow
+      - name: userconfig
+        configMap:
+          defaultMode: 0644
+          name: {{ include "ssh-service.fullname" . }}
+      - name: passwd
         secret:
           defaultMode: 0644
           secretName: {{ include "ssh-service.fullname" . }}
-      - name: passwd
+      - name: shadow
         secret:
           defaultMode: 0644
           secretName: {{ include "ssh-service.fullname" . }}
@@ -61,8 +65,6 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         command:  ["/usr/sbin/sshd", "-De"]
         env:
-        - name: HOSTNAME
-          value: "{{ .Values.hostName }}"
         {{- range $key, $value := .Values.extraEnv }}
         - name: {{ $key }}
           value: "{{ $value }}"
@@ -94,11 +96,14 @@ spec:
         - mountPath: /etc/ssh/sshd_config
           name: sshdconfig
           subPath: sshd_config
+        - mountPath: /usr/local/etc/user-config.json
+          name: userconfig
+          subPath: user_config
         - mountPath: /var/lib/extrausers/passwd
           name: passwd
           subPath: passwd
         - mountPath: /var/lib/extrausers/shadow
-          name: shadow
+          name: passwd
           subPath: shadow
         {{- range $key := .Values.sshHostKeys }}
         {{- if and $key.content (ne $key.content "") }}

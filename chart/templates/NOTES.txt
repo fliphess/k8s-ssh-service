@@ -1,1 +1,1 @@
-Thank you for installing the zaaksysteem.nl kibana-backup chart.
+Thank you for installing the zaaksysteem.nl ssh-service chart.
