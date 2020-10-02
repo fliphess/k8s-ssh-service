@@ -43,6 +43,10 @@ spec:
         configMap:
           defaultMode: 0644
           name: {{ include "ssh-service.fullname" . }}
+      - name: tcpwrappers
+        configMap:
+          defaultMode: 0644
+          name: {{ include "ssh-service.fullname" . }}
       - name: passwd
         secret:
           defaultMode: 0644
@@ -99,6 +103,9 @@ spec:
         - mountPath: /usr/local/etc/user-config.json
           name: userconfig
           subPath: user_config
+        - mountPath: /etc/hosts.allow
+          name: tcpwrappers
+          subPath: tcp_wrappers
         - mountPath: /var/lib/extrausers/passwd
           name: passwd
           subPath: passwd

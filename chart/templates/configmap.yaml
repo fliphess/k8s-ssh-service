@@ -9,6 +9,11 @@ metadata:
 data:
   sshd_config: >
   {{ include "ssh-service.sshd_config" . | nindent 4 }}
+
   user_config: >
   {{ toPrettyJson .Values.userConfig | nindent 4 }}
+
+  tcp_wrappers: >
+  {{ include "ssh-service.tcp_wrappers" . | nindent 4 }}
+
 {{- end }}

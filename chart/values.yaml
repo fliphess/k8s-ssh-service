@@ -62,7 +62,8 @@ readinessProbe:
 sshdConfig:
   Port: 22
   SyslogFacility: AUTH
-  LogLevel: VERBOSE
+  #LogLevel: VERBOSE
+  LogLevel: DEBUG
   LoginGraceTime: 2m
   PermitRootLogin: "no"
   StrictModes: "yes"
@@ -89,14 +90,16 @@ sshdConfig:
   AuthorizedKeysCommand: /usr/local/bin/ssh-key-command %u
   AuthorizedKeysCommandUser: nobody
 
-userConfig:
-  admin:
-    uid: 1001
-    shell: /bin/bash
-    ssh_keys:
-    - comment: "key@example.com"
-      key: "SOMEKEY"
-      type: ecdsa-sha2-nistp256
+userConfig: {}
+# admin:
+#   uid: 1001
+#   shell: /bin/bash
+#   ip_addresses:
+#   - 0.0.0.0/0
+#   ssh_keys:
+#   - comment: "key@example.com"
+#     key: "SOMEKEY"
+#     type: ecdsa-sha2-nistp256
 
 sshHostKeys: []
 #- name: ssh_host_ecdsa_key

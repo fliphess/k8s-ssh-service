@@ -1,8 +1,7 @@
 FROM debian:buster
 MAINTAINER Mintlab Devops <ops@mintlab.nl>
 
-
-
+## Expose ssh port
 EXPOSE 22
 
 ## Install packages
@@ -59,10 +58,12 @@ RUN mkdir -p /var/run/sshd \
  && touch /var/log/wtmp \
  && chmod 0664 /var/log/wtmp \
  && rm /etc/ssh/ssh_host* \
- && ssh-keygen -A
+ && ssh-keygen -A \
+ && rm /etc/ssh/ssh_host*.pub
 
 ## Copy configuration files and scripts
 COPY config/nsswitch.conf /etc
+COPY config/hosts.deny /etc
 COPY config/ssh-key-command /usr/local/bin
 COPY config/create-home /usr/local/bin
 COPY config/users /etc/users
