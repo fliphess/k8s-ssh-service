@@ -24,16 +24,16 @@ if username not in user_data:
 
 
 # {
-#   "username": "flip",
-#    "fullname": "Flip Hess",
-#    "shell": "/bin/bash",
-#    "ssh_keys": [
-#      {
-#        "comment": "flip@zaaksysteem.nl",
-#        "key": "AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBJ0aRXmlCO+dBCfmakY9KXMUk5s2zQdlQ5d7vILlG4mhe4R8+hokIIa+m0KG9D1epG2TeWu8343pONl58NZXBCM=",
-#        "type": "ecdsa-sha2-nistp256"
-#      }
-#    ]
+#   "flip" {
+#      "shell": "/bin/bash",
+#      "ssh_keys": [
+#        {
+#          "comment": "flip@zaaksysteem.nl",
+#          "key": "AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBJ0aRXmlCO+dBCfmakY9KXMUk5s2zQdlQ5d7vILlG4mhe4R8+hokIIa+m0KG9D1epG2TeWu8343pONl58NZXBCM=",
+#          "type": "ecdsa-sha2-nistp256"
+#        }
+#      ]
+#    }
 #  }
 
 ssh_keys = user_data.get(username, {}).get('ssh_keys', [])
