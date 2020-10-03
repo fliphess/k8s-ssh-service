@@ -3,8 +3,8 @@ enabled: true
 replicaCount: 1
 
 image:
-  repository: registry.gitlab.com/mintlab/devops/docker/ssh-service
-  tag: master
+  repository: ghcr.io/fliphess/k8s-ssh-service
+  tag: latest
   pullPolicy: Always
 
 imagePullSecrets: []
@@ -59,7 +59,7 @@ readinessProbe:
   initialDelaySeconds: 30
   timeoutSeconds: 15
 
-motdContent: |
+motdContent: "
        ########################################
        ########################################
        ########################################
@@ -84,7 +84,7 @@ motdContent: |
                               #######################################
 
 Warning: All volumes are volatile! Please do not store your files here!
-
+"
 
 sshdConfig:
   Port: 22
