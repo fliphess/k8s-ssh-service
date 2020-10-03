@@ -47,6 +47,10 @@ spec:
         configMap:
           defaultMode: 0644
           name: {{ include "ssh-service.fullname" . }}
+      - name: motd
+        configMap:
+          defaultMode: 0644
+          name: {{ include "ssh-service.fullname" . }}
       - name: passwd
         secret:
           defaultMode: 0644
@@ -106,6 +110,9 @@ spec:
         - mountPath: /etc/hosts.allow
           name: tcpwrappers
           subPath: tcp_wrappers
+        - mountPath: /etc/motd
+          name: motd
+          subPath: motd
         - mountPath: /var/lib/extrausers/passwd
           name: passwd
           subPath: passwd

@@ -16,4 +16,7 @@ data:
   tcp_wrappers: >
   {{ include "ssh-service.tcp_wrappers" . | nindent 4 }}
 
+  motd: >
+  {{ default (printf "\n\n\nWarning: All volumes are volatile! Please do not store your files here!\n\n") .Values.motdContent }}
+
 {{- end }}
